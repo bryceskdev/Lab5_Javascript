@@ -139,7 +139,32 @@ function loadStatsPage() {
 
 // TODO Implement step 4.
 function loadPlayersPage(){
-	
+	var playerDrop = document.getElementById("player_selector");
+	var len = players.length; 
+	var player;
+	for (var i = 0; i < len; i++) {
+		player = document.createElement("a");
+		player.setAttribute("class", "dropdown-item");
+		player.setAttribute("href", "#");
+		player.setAttribute("onclick", "switchPlayers(" + i + ")");
+		player.innerHTML = players[i].name;
+		playerDrop.appendChild(player);
+	}
+}
+
+function switchPlayers(playerNum){
+	var player = players[playerNum];
+	document.getElementById("p_year").innerHTML = player.year
+	document.getElementById("p_major").innerHTML = player.major
+	document.getElementById("g_played").innerHTML = player.games_played
+	document.getElementById("player_img").src = player.img
+	document.getElementById("p_yards").innerHTML = player.pass_yards
+	document.getElementById("r_yards").innerHTML = player.rushing_yards
+	document.getElementById("rec_yards").innerHTML = player.receiving_yards
+
+	document.getElementById("avg_p_yards").innerHTML = (player.pass_yards / player.games_played).toFixed(2)
+	document.getElementById("avg_r_yards").innerHTML = (player.rushing_yards/player.games_played).toFixed(2)
+	document.getElementById("avg_rec_yards").innerHTML = (player.receiving_yards/player.games_played).toFixed(2)
 }
 
 				
